@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/auth/{provider}', [AuthController::class, 'redirect']);
-
+// Chuyển hướng Socialite
 Route::get('/callback/{provider}', [AuthController::class, 'callback']);
+
+// Xem thử email
+Route::get('/mail', function() {
+    return view('mail.register', ['user' => '']);
+});

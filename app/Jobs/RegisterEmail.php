@@ -18,23 +18,13 @@ class RegisterEmail implements ShouldQueue
     public $email;
 
     public $user;
-    
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
+   
     public function __construct($email, User $user)
     {
         $this->email = $email;
         $this->user = $user;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
     public function handle()
     {
         Mail::to($this->user->email)->send($this->email);

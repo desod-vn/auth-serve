@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,13 @@ Route::group(['middleware' => 'guest'], function() {
 
     // Đăng nhập
     Route::post('/login', [AuthController::class, 'login']);
-});
 
-Route::get('/test', [AuthController::class, 'test']);
+    // Đăng nhập Socialite
+    Route::get('/auth/{provider}', [AuthController::class, 'redirect']);
+
+    // Quên mật khẩu
+    Route::post('/forgot', [AuthController::class, 'forgot']);
+});
 
 Route::group(['middleware' => 'auth:api'], function() {
     // Đăng xuất
@@ -31,4 +36,25 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     // Thông tin người dùng
     Route::get('/user', [AuthController::class, 'user']);
+
+    Route::prefix('user/{user}')->group(function () {
+    
+        // Mật khẩu mới
+        Route::put('/new_password', [UserController::class, 'new_password']);
+
+        // Thay ảnh đại diện
+        Route::post('/avatar', [UserController::class, 'avatar']);
+
+        // Đổi mật khẩu
+        Route::put('/password', [UserController::class, 'password']);
+
+        // Xem thông tin người khác
+        Route::get('/information', [UserController::class, 'show']);
+
+        // Sửa thông tin người dùng
+        Route::put('/update', [UserController::class, 'show']);
+
+        // Khóa tài khoản
+        Route::delete('/delete', [UserController::class, 'destroy']);
+    });
 });
