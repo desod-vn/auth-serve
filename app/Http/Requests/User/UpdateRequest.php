@@ -3,28 +3,24 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\PhoneNumberCheck;
 
 class UpdateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|min:3|max:255',
+            'birthday' => 'required|date',
+            'gender' => 'required|string|max:10',
+            'phone' => ['required', 'numeric', new PhoneNumberCheck()],
+            'address' => 'required|string|max:255',
+            'story' => 'required|string|max:255',
         ];
     }
 }

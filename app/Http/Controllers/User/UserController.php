@@ -74,7 +74,7 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        $user->fullname = $request->fullname;
+        $user->name = $request->name;
         $user->birthday = $request->birthday;
         $user->gender = $request->gender;
         $user->phone = $request->phone;

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Events\RegisterUser;
+use App\Events\ForgotUser;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\ForgotRequest;
@@ -83,9 +84,12 @@ class AuthController extends Controller
         if($user) {
             $token = $user->createToken('App')->plainTextToken;
 
+            $link = Config::FRONTEND_NEWPASSWORD . $token;
+
+            event( new ForgotUser($request->email, $link));
+            
             return response()->json([
                 'status' => Config::SUCCESS,
-                'token' => $token,
             ]);
         }
 

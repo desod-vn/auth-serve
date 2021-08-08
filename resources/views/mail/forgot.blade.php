@@ -7,7 +7,7 @@
 >
     <tr>
         <td align="center" bgcolor="#70bbd9" style="padding: 10px 0 30px 0;">
-            <img src="https://i.imgur.com/dZW6ydi.png" alt="Creating Email Magic" width="300" height="auto" style="display: block;" />
+            <img src="https://imgur.com/7bxegyl.png" alt="Creating Email Magic" width="300" height="auto" style="display: block;" />
         </td>
     </tr>
 
@@ -16,20 +16,14 @@
             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                     <td>
-                        <h2>Xin chào {{ $user->name ?? 'Thắng' }} đã tham gia cùng chúng tôi
+                        <h2>Đảm bảo rằng bạn không để cho ai khác biết liên kết này
                     </td>
                 </tr>
                 <tr>
                     <td style="padding: 20px 0 30px 0;">
-                        Dưới đây là những thông tin cơ bản để phục vụ việc đăng nhập vào dịch vụ của chúng tôi.
-                        <p>Tài khoản của bạn được tạo vào <b>{{ $user->created_at ?? 'hôm nay'}}</b></p>
-                        <p>Địa chỉ email: <b>{{ $user->email ?? 'example@gmail.com' }}</b></p>
-                        <p>Họ và tên: <b>{{ $user->name ?? 'Thắng' }}</b></p>
-                        <p>
-                            Các thông tin như địa chỉ, số điện thoại, ngày sinh ... 
-                            sẽ dễ dàng được cập nhật ngay khi bạn đăng nhập vào dịch vụ của chúng tôi
-                        </p>
-
+                        Dưới đây là liên kết giúp bạn đặt lại mật khẩu mới.
+                        <br />
+                        <a href="{{ $link ?? 'link nè'}}">{{ $link }}</a>
                     </td>
                 </tr>
             </table>

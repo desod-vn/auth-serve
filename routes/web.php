@@ -23,5 +23,5 @@ Route::get('/callback/{provider}', [AuthController::class, 'callback']);
 
 // Xem thử email
 Route::get('/mail', function() {
-    return view('mail.register', ['user' => '']);
+    return view('mail.forgot', ['link' => 'http://localhost']);
 });

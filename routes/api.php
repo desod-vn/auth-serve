@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::get('/information', [UserController::class, 'show']);
 
         // Sửa thông tin người dùng
-        Route::put('/update', [UserController::class, 'show']);
+        Route::put('/update', [UserController::class, 'update']);
 
         // Khóa tài khoản
         Route::delete('/delete', [UserController::class, 'destroy']);

@@ -8,24 +8,13 @@ use Illuminate\Queue\InteractsWithQueue;
 use App\Mail\Register;
 use App\Jobs\RegisterEmail;
 
-class SendEmail
+class RegisterSendEmail
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //
     }
 
-    /**
-     * Handle the event.
-     *
-     * @param  RegisterUser  $event
-     * @return void
-     */
     public function handle(RegisterUser $event)
     {
         $sendEmail = new Register($event->user);
